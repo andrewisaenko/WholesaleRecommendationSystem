@@ -1,0 +1,58 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Мій профіль";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Левая колонка: навигация -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a asp-page="./Index" class="list-group-item list-group-item-action active" style="background-color: #003399;">Профіль</a>
+                <a asp-page="./Email" class="list-group-item list-group-item-action">Зміна Email</a>
+                <a asp-page="./ChangePassword" class="list-group-item list-group-item-action">Зміна паролю</a>
+                <a asp-page="./PersonalData" class="list-group-item list-group-item-action">Особисті дані</a>
+                <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="mt-2">
+                    <button type="submit" class="btn btn-outline-danger w-100">Вийти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Правая колонка: контент -->
+        <div class="col-md-9">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">@ViewData["Title"]</h3>
+
+                    <partial name="_StatusMessage" for="StatusMessage" />
+
+                    <form id="profile-form" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Username" class="form-control" placeholder="Ваш логін" disabled />
+                            <label asp-for="Username"></label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Номер телефону" />
+                            <label asp-for="Input.PhoneNumber"></label>
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <button id="update-profile-button" type="submit" class="btn text-white w-100" style="background-color: #003399;">Зберегти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

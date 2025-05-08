@@ -1,0 +1,11 @@
+﻿@model WholesaleRecommendationSystem.Models.Category
+
+<div class="col-md-4 mb-4">
+    <div class="card text-center">
+        <div class="card-body">
+            <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name">
+            <h5 class="card-title">@Model.Name</h5>
+            <a href="@Url.Action("Category", "Catalog", new { id = Model.Id })" class="btn btn-primary">Переглянути</a>
+        </div>
+    </div>
+</div>

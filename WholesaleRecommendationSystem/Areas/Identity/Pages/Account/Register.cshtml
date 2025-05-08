@@ -1,0 +1,89 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Реєстрація";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Левая колонка -->
+        <div class="col-md-6 d-flex flex-column align-items-center text-center pe-md-5 mb-4 mb-md-0">
+
+            <!-- Верх: заголовок и вкладки -->
+            <div class="mb-4">
+                <div class="d-inline-flex bg-light rounded-pill overflow-hidden shadow-sm">
+                    <a href="/Identity/Account/Login" class="px-4 py-2 text-secondary text-decoration-none">Вхід</a>
+                    <span class="px-4 py-2 bg-white fw-bold" style="color: #003399;">Реєстрація</span>
+
+                    
+                </div>
+            </div>
+
+            <!-- Информация -->
+            <p class="lead px-3">Зареєструйтесь, щоб накопичувати особисту знижку, переглядати історію замовлень та багато іншого.</p>
+
+            <!-- Соцсети -->
+            <div class="mt-2 mb-5">
+                <p class="fw-semibold mb-3">Або увійдіть через соцмережі:</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-outline-primary px-4 py-2">
+                        <i class="fa fa-facebook me-2"></i> Facebook
+                    </button>
+                    <button class="btn btn-outline-danger px-4 py-2">
+                        <i class="fa fa-google me-2"></i> Google
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Правая колонка: форма -->
+        <div class="col-md-6">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="border p-4 rounded shadow-sm bg-white">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.FirstName" class="form-label">Ім'я</label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.LastName" class="form-label">Прізвище</label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.PhoneNumber" class="form-label">Телефон</label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" placeholder="+38 (093) 123-45-67" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label">Пароль</label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.ConfirmPassword" class="form-label">Підтвердіть пароль</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn text-white w-100" style="background-color: #003399;">Зареєструватися</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

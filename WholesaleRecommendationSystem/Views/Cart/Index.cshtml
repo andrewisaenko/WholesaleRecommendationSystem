@@ -1,0 +1,44 @@
+﻿@model List<WholesaleRecommendationSystem.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Кошик";
+}
+
+<div class="container mt-4">
+    <h2>Ваш кошик</h2>
+
+    @if (!Model.Any())
+    {
+        <p>Кошик порожній.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Фото</th>
+                    <th>Назва</th>
+                    <th>Кількість</th>
+                    <th>Ціна</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><img src="@item.ImageUrl" width="50" /></td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>$@item.Price</td>
+                        <td>
+                            <a asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm">✕</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a asp-action="Clear" class="btn btn-outline-secondary">Очистити кошик</a>
+    }
+</div>

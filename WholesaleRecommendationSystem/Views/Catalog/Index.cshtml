@@ -1,0 +1,15 @@
+﻿@model List<WholesaleRecommendationSystem.Models.Category>
+
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Категорії товарів</h2>
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <partial name="_CategoryCard" model="category" />
+        }
+    </div>
+</div>
